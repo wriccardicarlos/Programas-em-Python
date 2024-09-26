@@ -9,3 +9,13 @@ print('caminho do arquivo:', diretorio_arquivo)
 
 lista = os.listdir()
 print(lista)
+
+if os.path.exists('arquivo.txt'):
+    os.remove('arquivo.txt')
+else:
+    print('arquivo nao existe')
+
+if os.path.exists('novo_diretorio') == False:
+    os.mkdir('novo_diretorio')
+
+os.system('dir')
