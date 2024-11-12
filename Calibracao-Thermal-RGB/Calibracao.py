@@ -59,7 +59,7 @@ def calibrate(showPics=True):
 
     #salva os dados de calibração em um arquivo
     curFolder = os.path.dirname(os.path.abspath(__file__))
-    paramPath = os.path.join(curFolder,'calibracao.npz')
+    paramPath = os.path.join(curFolder,'calibracaoUnDist.npz')
     np.savez(paramPath,
              repError=repError,
              camMatrix=camMatrix,
@@ -70,7 +70,7 @@ def calibrate(showPics=True):
 
 def removeDistorcion(camMatrix,dist):
     root = os.getcwd()
-    imgpath = os.path.join(root,'testeDist.jpg')
+    imgpath = os.path.join(root,'calibration/testeDist.jpg')
     img = cv2.imread(imgpath)
 
     heigth, width = img.shape[:2]
@@ -81,6 +81,7 @@ def removeDistorcion(camMatrix,dist):
     # escrever linha para ver a distorçao
     cv2.line(img,(1769,103),(1780,922),(255,255,255),2)
     cv2.line(imgUndist,(1769,103),(1780,922),(255,255,255),2)
+    cv2.imwrite("imgUndist.jpg", imgUndist)
 
     plt.figure()
     plt.subplot(121)
@@ -97,5 +98,5 @@ def runRemoveDistortion():
     removeDistorcion(camMatrix,dist)
 
 if  __name__ == "__main__":
-    #runCalibration()
-    runRemoveDistortion()
+    runCalibration()
+    #runRemoveDistortion()
